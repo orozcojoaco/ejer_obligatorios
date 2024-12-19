@@ -1,0 +1,147 @@
+using Microsoft.SqlServer.Server;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static ejer_obligatorios.Jugador;
+
+namespace ejer_obligatorios
+{
+
+    public interface IApuesta
+    {
+        void jugarJornada();
+        void MostrarResultadosFinales();
+    }
+    public class Jugador
+    {
+        public string nombre { get; set; }
+        public int dinero { get; set; }
+        public int cantVictorias { get; set; }
+        public (int, int) primerApuesta  { get; private set; }
+        public (int, int) segundaApuesta { get; private set; }
+
+        public Jugador(string nom) 
+        {
+            nombre = nom;
+            dinero = 600;
+            cantVictorias = 0;
+        }
+
+        public bool PuedeApostar() 
+        {
+            return dinero >= 150;
+        }
+
+        public void realizarLaApuesta(Random rnd)
+        {
+            primerApuesta = (rnd.Next(0,5), rnd.Next(0,5));
+            segundaApuesta = (rnd.Next(0,5), rnd.Next(0,5));
+            dinero -= 150;
+        }
+
+        public void GanarApuesta(int victoria)
+        {
+            dinero += victoria;
+            cantVictorias++;
+        }
+
+        public override string ToString()
+        {
+            return (nombre + " Dinero: " + dinero + " Veces que ganaste: " + cantVictorias);
+        }
+
+        public class Apuesta : IApuesta
+        {
+            private List<Jugador> jugadores;
+            private int victoria;
+            private Random rnd;
+
+            public Apuesta(int dineroInicial)
+            {
+                jugadores = new List<Jugador>();
+                victoria = 0;
+                rnd = new Random();
+            }
+
+            public void AgregarJugador(Jugador jugador)
+            {
+                jugadores.Add(jugador);
+            }
+
+            public void jugarJornada()
+            {
+                victoria += jugadores.Count * 500;
+                (int, int) resultadoPartido1 = (rnd.Next(0, 5), rnd.Next(0, 5));
+                (int, int) resultadoPartido2 = (rnd.Next(0, 5), rnd.Next(0, 5));
+
+                Console.WriteLine("Resultado del primer partido: " + resultadoPartido1);
+                Console.WriteLine("Resultado del segundo partido: " + resultadoPartido2);
+
+                bool hayGanador = false;
+                foreach (var jugador in jugadores)
+                {
+                    if (jugador.PuedeApostar())
+                    {
+                        jugador.realizarLaApuesta(rnd);
+                        Console.WriteLine(jugador.nombre + " aposto: " + jugador.primerApuesta + " y " + jugador.segundaApuesta);
+
+                        if (jugador.primerApuesta == resultadoPartido1 && jugador.segundaApuesta == resultadoPartido2)
+                        {
+                            jugador.GanarApuesta(victoria);
+                            Console.WriteLine(jugador.nombre + " gano: " + victoria + " pesos");
+                            victoria = 0;
+                            hayGanador = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!hayGanador)
+                {
+                    Console.WriteLine("Nadie gano, se le suma mas plata.");
+                }
+            }
+
+            public void MostrarResultadosFinales()
+            {
+                foreach (var jugador in jugadores)
+                {
+                    Console.WriteLine(jugador);
+                }
+                Console.WriteLine("Valor de la victoria: " + victoria + " pesos");
+            }
+        }
+
+
+        internal class Program
+        {
+
+            static void Main(string[] args)
+            {
+                const int dineroInicial = 20000;
+                Apuesta apuesta = new Apuesta(dineroInicial);
+
+                apuesta.AgregarJugador(new Jugador("agus"));
+                apuesta.AgregarJugador(new Jugador("lauty"));
+                apuesta.AgregarJugador(new Jugador("jatni"));
+
+                for (int jornada = 1; jornada < 5; jornada++)
+                {
+                    Console.WriteLine("Jornada :" + jornada);
+                    apuesta.jugarJornada();
+                }
+
+                Console.WriteLine("Resultados Finales");
+                apuesta.MostrarResultadosFinales();
+                Console.ReadKey();
+
+
+            }
+        }
+    }
+}
+
+
