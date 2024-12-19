@@ -1,0 +1,135 @@
+using Microsoft.SqlServer.Server;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ejer_obligatorios
+{
+    public class Cine
+    {
+        public Pelicula peliReproduciendo { get; set; }
+        public int precioEntrada { get; set; }
+
+        public Cine(Pelicula pelicula, int precio)
+        {
+            peliReproduciendo = pelicula;
+            precioEntrada = precio;
+        }
+    }
+
+
+    public class Pelicula
+    {
+        public string titulo { get; set; }
+        public int duracion { get; set; }
+        public int edadMinima { get; set; }
+        public string director { get; set; }
+
+        public Pelicula(string tit, int durac, int edad, string dire)
+        {
+            titulo = tit;
+            duracion = durac;
+            edadMinima = edad;
+            director = dire;
+        }
+
+    }
+
+    public class Espectador
+    {
+        public string nombre { get; set; }
+        public int edad { get; set; }
+        public double dinero { get; set; }
+
+        public Espectador(string nom, int ed, double din)
+        {
+            nombre = nom;
+            edad = ed;
+            dinero = din;
+        }
+    }
+
+    public class Asientos
+    {
+        public char columna;
+        public int fila;
+        public bool ocupado;
+        public Espectador espectador;
+
+        public Asientos()
+        {
+
+        }
+        public Asientos(char colum, int fil)
+        {
+            columna = colum;
+            fila = fil;
+        }
+
+        public void CrearAsientos(List<Asientos> asientos)
+        {
+            for (int fila = 8; fila >= 1; fila--)
+            {
+                for (char columna = 'A'; columna <= 'I'; columna++)
+                {
+                    asientos.Add(new Asientos(columna, fila));
+                }
+            }
+        }
+
+        public void SentarEspectador(Cine cinema, Pelicula peli, Espectador espectador, List<Asientos> asientos)
+        {
+            if (espectador.dinero < cinema.precioEntrada)
+            {
+                Console.WriteLine("no tiene plata");
+                return;
+            }
+            if (espectador.edad < peli.edadMinima)
+            {
+                Console.WriteLine("no tiene la edad");
+                return;
+            }
+            foreach (Asientos butaca in asientos)
+            {
+                if (!butaca.ocupado)
+                {
+                    butaca.ocupado = true;
+                    butaca.espectador = espectador;
+                    Console.WriteLine("el espectador se sento en la butaca: " + butaca.columna + butaca.fila);
+                    return;
+                }
+
+                
+            }
+            Console.WriteLine("sin asientos");
+        }
+    }
+
+
+
+    internal class Program
+    {
+        Random rnd = new Random();
+        static void Main(string[] args)
+        {
+            List<Asientos> asientos = new List<Asientos>();
+            Asientos asiento = new Asientos();
+            asiento.CrearAsientos(asientos);
+            Pelicula peli1 = new Pelicula("campeones", 120, 12, "messi");
+            Cine cinema = new Cine(peli1,500);
+            Espectador espectador1 = new Espectador("agus",17,1000);
+            Espectador espectador2 = new Espectador("lauty",17,600);
+            Espectador espectador3 = new Espectador("jatni",18,12000);
+            asiento.SentarEspectador(cinema, peli1,espectador1, asientos);
+            asiento.SentarEspectador(cinema, peli1, espectador2, asientos);
+            asiento.SentarEspectador(cinema, peli1, espectador3, asientos);
+            Console.ReadKey();
+
+        }
+    }
+}
+
+

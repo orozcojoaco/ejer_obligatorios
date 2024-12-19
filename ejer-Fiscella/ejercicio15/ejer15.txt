@@ -1,0 +1,225 @@
+using Microsoft.SqlServer.Server;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+
+
+namespace ejer_obligatorios
+{
+    public class Bebida
+    {
+        public string id { get; set; }
+        public double litros { get; set; }
+        public double precio { get; set; }
+        public string marca { get; set; }
+
+        public Bebida(string ID, double litros, double precio, string marca) 
+        {
+            this.id = ID;
+            this.litros = litros;
+            this.precio = precio;
+            this.marca = marca;
+        }
+
+        public virtual double CalcularElPrecio()
+        {
+            return precio * litros;
+        }
+
+        public virtual string MostrarInformacion()
+        {
+            return ("ID: " + id  + ", litros: " + litros + ", precio: $" + precio + ", marca: " + marca);
+        }
+    }
+
+    public class AguaMineral : Bebida
+    {
+        public string origen { get; set; }
+
+        public AguaMineral(string ID, double litros, double precio, string marca, string origen) : base(ID, litros, precio, marca)
+        {
+            this.origen = origen;
+        }
+
+        public override string MostrarInformacion()
+        {
+            return (base.MostrarInformacion() + ", Origen: " + origen);
+        }
+    }
+
+    public class BebidaAzucarada : Bebida
+    {
+        public double porcentajeDeAzucar { get; set; }
+        public bool promocion { get; set; }
+
+        public BebidaAzucarada(string id, double litros, double precio, string marca, double porcentajeDeAzucar, bool promocion)
+            : base(id, litros, precio, marca)
+        {
+            this.porcentajeDeAzucar = porcentajeDeAzucar;
+            this.promocion = promocion;
+        }
+
+        public override double CalcularElPrecio()
+        {
+            if (promocion)
+            {
+                return base.CalcularElPrecio() * 0.9;
+            }
+            return base.CalcularElPrecio();
+        }
+
+        public override string MostrarInformacion()
+        {
+            string promo;
+            if (promocion)
+            {
+                promo = "Sí";
+            }
+            else
+            {
+                promo = "No";
+            }
+            return base.MostrarInformacion() + ", Azúcar: " + porcentajeDeAzucar + "%, Promoción: " + promocion;
+        }
+    }
+
+    public class Almacen
+    {
+        private Bebida[,] estanteria;
+        private int filas;
+        private int columnas;
+
+        public Almacen(int filas, int columnas)
+        {
+            this.filas = filas;
+            this.columnas = columnas;
+            estanteria = new Bebida[filas, columnas];
+        }
+
+        public bool AgregarProducto(Bebida bebida)
+        {
+            for (int i = 0; i < filas; i++)
+            {
+                for (int j = 0; j < columnas; j++)
+                {
+                    if (estanteria[i, j] == null)
+                    {
+                        estanteria[i, j] = bebida;
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public bool EliminarProducto(string id)
+        {
+            for (int i = 0; i < filas; i++)
+            {
+                for (int j = 0; j < columnas; j++)
+                {
+                    if (estanteria[i, j] != null && estanteria[i, j].id == id)
+                    {
+                        estanteria[i, j] = null;
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public double CalcularPrecioTotal()
+        {
+            double total = 0;
+            foreach (var bebida in estanteria)
+            {
+                if (bebida != null)
+                {
+                    total += bebida.CalcularElPrecio();
+                }
+            }
+            return total;
+        }
+
+        public double CalcularPrecioMarca(string marca)
+        {
+            double total = 0;
+            foreach (var bebida in estanteria)
+            {
+                if (bebida != null && bebida.marca == marca)
+                {
+                    total += bebida.CalcularElPrecio();
+                }
+            }
+            return total;
+        }
+
+        public double CalcularPrecioEstanteria(int columna)
+        {
+            if (columna < 0 || columna >= columnas)
+            {
+                Console.WriteLine("Estanteria invalidada");
+                return 0;
+            }
+            double total = 0;
+            for (int i = 0; i < filas; i++)
+            {
+                if (estanteria[i, columna] != null)
+                {
+                    total += estanteria[i, columna].CalcularElPrecio();
+                }
+            }
+            return total;
+        }
+
+        public void MostrarInformacion()
+        {
+            foreach (var bebida in estanteria)
+            {
+                if (bebida != null)
+                {
+                    Console.WriteLine(bebida.MostrarInformacion());
+                }
+            }
+        }
+    }
+
+
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Almacen almacen = new Almacen(3, 4);
+
+            Bebida agua = new AguaMineral("1", 1.5, 0.8, "AguaPura", "Manantial Azul");
+            Bebida bebidaAzucarada = new BebidaAzucarada("2", 2.0, 1.5, "Coca-Cola", 10.5, true);
+            Bebida otraBebidaAzucarada = new BebidaAzucarada("3", 1.0, 1.0, "Fanta", 11.0, false);
+
+            almacen.AgregarProducto(agua);
+            almacen.AgregarProducto(bebidaAzucarada);
+            almacen.AgregarProducto(otraBebidaAzucarada);
+            almacen.MostrarInformacion();
+
+            Console.WriteLine("Precio total del almacen: $" + almacen.CalcularPrecioTotal());
+
+            Console.WriteLine("Precio total de la marca Coca-Cola: $" + almacen.CalcularPrecioMarca("Coca-Cola"));
+
+            Console.WriteLine("Precio total de la estantería 1: $" + almacen.CalcularPrecioEstanteria(1));
+
+            almacen.EliminarProducto("2");
+
+            Console.WriteLine("\nInformación después de eliminar al producto:");
+            almacen.MostrarInformacion();
+            Console.ReadKey();
+
+        }
+     }
+        
+}
+
+

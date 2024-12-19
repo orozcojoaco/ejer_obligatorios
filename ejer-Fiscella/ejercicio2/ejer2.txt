@@ -1,0 +1,146 @@
+using Microsoft.SqlServer.Server;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ejer_obligatorios
+{
+
+    public class Persona
+    {
+        private string nombre = "";
+        private int edad = 0;
+        private int dni;
+        private char sexo = 'M';
+        private double peso = 0;
+        private double altura = 0;
+
+        public string Nombre { set { nombre = value; } get { return nombre; } }
+        public int Edad { set { edad = value; } get { return edad; } }
+        public int DNI { set { dni = value; } get { return dni; } }
+        public char Sexo { set { sexo = value; } get { return sexo; } }
+        public double Peso { set { peso = value; } get { return peso; } }
+        public double Altura { set { altura = value; } get { return altura; } }
+
+        public Persona()
+        {
+
+        }
+        public void MostrarInformacion()
+        {
+            Console.WriteLine(nombre + " " + edad + " " + dni + " " + sexo + " " + peso + " " + altura);
+        }
+
+        public Persona(string nom, int ed,  char sex)
+        {
+            nombre = nom;
+            edad = ed;
+            sexo = sex;
+        }
+
+        public void MostrarInformacion(string nom, int ed, char sex)
+        {
+            Console.WriteLine(nombre + " " + edad + " " + sexo);
+        }
+
+        public Persona(string nom, int ed, char sex, double pes, double altu)
+        {
+            nombre = nom;
+            edad = ed;
+            dni = generaDNI();
+            sexo = sex;
+            peso = pes;
+            altura = altu;
+        }
+        public void MostrarInformacion(string nom, int ed, int dni, char sex, double pes, double altu)
+        {
+            Console.WriteLine(nombre + " " + edad + " " + dni + " " + sexo + " " + peso + " " + altura);
+        }
+
+        public double CalcularIMC()
+        {
+            double PesoCorrecto = peso / (altura * altura);
+
+            if (PesoCorrecto > 20)
+            {
+                return -1;
+            }else if (PesoCorrecto >= 20 && PesoCorrecto <= 25)
+            {
+                return 0;
+            }
+            else
+            {
+                return 1;
+            }
+        }
+
+        public bool esMayorDeEdad()
+        {
+            if(edad >= 18)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void comprobarSexo()
+        {
+            if (sexo == 'M')
+            {
+                Console.WriteLine("MUJER");
+            }
+            else
+            {
+                Console.WriteLine("HOMBRE");
+            }
+        }
+
+        public int generaDNI()
+        {
+            Random rnd = new Random();
+            return rnd.Next(10000000, 99999999);
+        }
+
+    }
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+
+            Console.WriteLine("nombre: ");
+            string nombre = Console.ReadLine();
+            Console.WriteLine("edad: ");
+            int edad = int.Parse(Console.ReadLine());
+            Console.WriteLine("sexo: ");
+            char sexo = char.Parse(Console.ReadLine());
+            Console.WriteLine("peso: ");
+            double peso = double.Parse(Console.ReadLine());
+            Console.WriteLine("altura: ");
+            double altura = double.Parse(Console.ReadLine());
+
+            Persona per1 = new Persona(nombre, edad, sexo, peso, altura);
+            Persona per2 = new Persona(nombre, edad, sexo);
+            Persona per3 = new Persona();
+
+            Console.WriteLine("el imc es: " + per1.CalcularIMC());
+            //Console.WriteLine("el imc es: " + per2.CalcularIMC());
+            //Console.WriteLine("el imc es: " + per3.CalcularIMC());
+
+            Console.WriteLine("es mayor de edad? : " + per1.esMayorDeEdad());
+            //Console.WriteLine("es mayor de edad? : " + per2.esMayorDeEdad());
+            //Console.WriteLine("es mayor de edad? : " + per3.esMayorDeEdad());
+
+            per1.MostrarInformacion();
+            //per2.MostrarInformacion();
+            //per3.MostrarInformacion();
+            Console.ReadKey();
+
+        }
+    }
+}

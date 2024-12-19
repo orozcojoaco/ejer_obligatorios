@@ -1,0 +1,105 @@
+using Microsoft.SqlServer.Server;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ejer_obligatorios
+{
+
+    public class Password
+    {
+        Random contra = new Random();
+        private int longitud;
+        private string contraseña;
+
+        public Password()
+        {
+            longitud = 8;
+            generarPassword();
+        }
+
+        public Password(int longitu)
+        {
+            longitud = longitu;
+            generarPassword();
+        }
+
+        public void generarPassword()
+        {
+            string caracteresUsables = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            contraseña = " ";
+
+            for (int i = 0; i < longitud; i++)
+            {
+                contraseña += caracteresUsables[contra.Next(caracteresUsables.Length)];
+            }
+        }
+
+        public bool EsFuerte()
+        {
+            int letraMayuscula = 0;
+            int letraMinuscula = 0;
+            int cantidadNumeros = 0;
+
+            foreach (char carac in contraseña)
+            {
+                if (carac >= 'A' && carac <= 'Z')
+                {
+                    letraMayuscula++;
+                }
+                else if (carac >= 'a' && carac <= 'z')
+                {
+                    letraMinuscula++;
+
+                }
+                else if (carac >= '0' && carac <= '9')
+                {
+                    cantidadNumeros++;
+                }
+            }
+
+            return letraMayuscula > 2 && letraMinuscula > 1 && cantidadNumeros > 5;
+        }
+
+        public string getPassword()
+        {
+            return contraseña;
+        }
+
+        public int getLongitud()
+        {
+            return longitud;
+        }
+
+        public void setLongitud(int longitu)
+        {
+            longitud = longitu;
+            generarPassword();
+        }
+
+    }
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("cuantas contraseñas se ingresam: ");
+            int cantidad = int.Parse(Console.ReadLine());
+            Console.WriteLine("longirud de la contraseña: ");
+            int longitud = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < cantidad; i++)
+            {
+                Password password = new Password(longitud);
+                Console.WriteLine("Contraseña: " + password.getPassword() + " - Fuerte: " + password.EsFuerte());
+            }
+
+            Console.ReadKey();
+
+
+        }
+    }
+}
+ 

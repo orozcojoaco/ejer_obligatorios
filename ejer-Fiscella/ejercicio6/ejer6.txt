@@ -1,0 +1,59 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ejer_obligatorios
+{
+    internal class Program
+    {
+
+        class Libro
+        {
+            public string ISBN { get; set; }
+            public string Titulo { get; set; }
+            public string Autor { get; set; }
+            public int NumPaginas { get; set; }
+
+
+
+            public Libro(string isbn, string titulo, string autor, int numPaginas)
+            {
+                ISBN = isbn;
+                Titulo = titulo;
+                Autor = autor;
+                NumPaginas = numPaginas;
+            }
+
+            public void MostrarInformacion()
+            {
+                Console.WriteLine("El libro con ISBN " + ISBN + " tiene " + NumPaginas + " paginas");
+            }
+        }
+
+
+
+        static void Main(string[] args)
+        {
+            Libro lib1 = new Libro("978-84-9916-901-9","messi","maradona",1010);
+            Libro lib2 = new Libro("123-45-6789-654-4","ronaldo","pele",777);
+
+            lib1.MostrarInformacion();
+            lib2.MostrarInformacion();
+
+            if (lib1.NumPaginas > lib2.NumPaginas)
+            {
+                Console.WriteLine("el libro " + lib1.Titulo + " tiene mas paginas.");
+            }else if (lib2.NumPaginas > lib1.NumPaginas)
+            {
+                Console.WriteLine("el libro " + lib2.Titulo + " tiene mas paginas");
+            }
+            else
+            {
+                Console.WriteLine("el libro " + lib1.Titulo + " y " + lib2.Titulo + " tienen la misma cantidad de paginas"); 
+            }
+        }
+Console.ReadKey();
+    }
+}

@@ -1,0 +1,82 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ejer_obligatorios
+{
+
+    class Raices
+    {
+        private double a;
+        private double b;
+        private double c;
+
+
+        public Raices(double a, double b, double c) 
+        {
+            this.a = a; 
+            this.b = b; 
+            this.c = c;
+        }
+
+        public void ObtenerRaices()
+        {
+            double discriminante = GetDiscriminante();
+            if (discriminante > 0)
+            {
+                double raiz1 = (-b + Math.Sqrt(discriminante)) / (2 * a);
+                double raiz2 = (-b - Math.Sqrt(discriminante)) / (2 * a);
+                Console.WriteLine("las raices son: " + raiz1 + " y " + raiz2);
+            }
+        }
+        public void ObtenerRaiz()
+        {
+            double raiz = -b / (2 * a);
+            Console.WriteLine("la raiz es: " + raiz);
+        }
+
+        public double GetDiscriminante()
+        {
+            return (b * b) - (4 * a * c);
+        }
+
+
+        public bool TieneRaices()
+        {
+            return GetDiscriminante() >= 0;
+        }
+
+        public bool TieneRaiz()
+        {
+            return GetDiscriminante() == 0;
+        }
+
+        
+
+        public void Calcular()
+        {
+            if (TieneRaices())
+            {
+                ObtenerRaices();
+            }else if (TieneRaiz())
+            {
+                ObtenerRaiz();
+            }
+            else
+            {
+                Console.WriteLine("sin solucion");
+            }
+        }
+    }
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Raices cuenta = new Raices(2, -6,4);
+            cuenta.Calcular();
+            Console.ReadKey();
+        }
+    }
+}

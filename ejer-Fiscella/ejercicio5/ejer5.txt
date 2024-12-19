@@ -1,0 +1,272 @@
+using Microsoft.SqlServer.Server;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ejer_obligatorios
+{
+    interface Entregable
+    {
+        void entregar();
+        void devolver();
+        bool isEntregado();
+        int compareTo(Object a);
+
+    }
+    public class Serie : Entregable
+    {
+        string titulo;
+        int cantidadDeTemporadas;
+        bool entregado;
+        string genero;
+        string creador;
+
+        public Serie()
+        {
+            titulo = "";
+            cantidadDeTemporadas = 3;
+            entregado = false;
+            genero = "";
+            creador = "";
+        }
+
+        public Serie(string tit, string cread)
+        {
+            titulo = tit;
+            creador = cread;
+        }
+
+        public Serie(string tit, int cantTempo, bool entrega, string gen, string cread)
+        {
+            titulo = tit;
+            cantidadDeTemporadas = cantTempo;
+            entregado = false;
+            genero = gen;
+            creador = cread;
+        }
+
+        public string getTitulo()
+        { 
+            return titulo; 
+        }
+        public int getTemporadas()
+        { 
+            return cantidadDeTemporadas;
+        }
+        public string generoGet()
+        { 
+            return genero; 
+        }
+        public string CreadorGet()
+        { 
+            return creador; 
+        }
+
+        public void setTitulo(string tit) 
+        {
+            titulo = tit;
+        }
+
+        public void setTemporadas(int numTemporadas)
+        {
+            cantidadDeTemporadas = numTemporadas;
+        }
+
+        public void setGeneros(string gene)
+        {
+            genero = gene;
+        }
+
+        public void setCreador(string creado)
+        {
+            creador = creado;
+        }
+
+
+        public void entregar()
+        { entregado = true; }
+        public void devolver()
+        { entregado = false; }
+        public bool isEntregado()
+        { return entregado; }
+        public int compareTo(object a)
+        {
+            if (a is Serie)
+            {
+                return cantidadDeTemporadas.CompareTo(((Serie)a).cantidadDeTemporadas);
+            }
+            return 0;
+        }
+        public void MostrarSerie()
+        {
+            Console.WriteLine(titulo + " -- Temporadas: " + cantidadDeTemporadas);
+        }
+    }
+    public class Videojuego
+    {
+        string titulo;
+        int horasEstimadas;
+        bool entregado;
+        string genero;
+        string compañia;
+
+        public Videojuego()
+        {
+            titulo = ".";
+            horasEstimadas = 10;
+            entregado = false;
+            genero = ".";
+            compañia = ".";
+        }
+
+        public Videojuego(string tit, int horas)
+        {
+            titulo = tit;
+            horasEstimadas = horas;
+            entregado = false;
+            
+        }
+
+        public Videojuego(string tit, int horas, bool entrega, string gen, string compañ)
+        {
+            titulo = tit;
+            horasEstimadas = horas;
+            entregado = false;
+            genero = gen;
+            compañia = compañ;
+        }
+
+        public string getTitulo()
+        { 
+            return titulo;
+        }
+        public int getHoras()
+        { 
+            return horasEstimadas; 
+        }
+        public string getGenero()
+        { 
+            return genero; 
+        }
+        public string getCompañia()
+        { 
+            return compañia; 
+        }
+
+        public void setTitulo(string tit)
+        { 
+            titulo = tit; 
+        }
+        public void setHoras(int horas)
+        { 
+            horasEstimadas = horas;
+        }
+        public void setGenero(string gen)
+        { 
+            genero = gen; 
+        }
+        public void setCompañia(string compañ)
+        { 
+            compañia = compañ; 
+        }
+
+        public void entregar()
+        { entregado = true; }
+        public void devolver()
+        { entregado = false; }
+        public bool isEntregado()
+        { return entregado; }
+
+        public int compareTo(object a)
+        {
+            if (a is Videojuego)
+            {
+                return horasEstimadas.CompareTo(((Videojuego)a).horasEstimadas);
+            }
+            return 0;
+        }
+
+        public void MostrarVideojuego()
+        {
+            Console.WriteLine(titulo + "-- horas: " + horasEstimadas);
+        }
+    }
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Serie[] series = new Serie[5];
+            Videojuego[] videojuegos = new Videojuego[5];
+
+            series[0] = new Serie("Breaking Bad", 3, true, "Accion y drogas", "Joaquin");
+            series[1] = new Serie("Un Show Mas", "Matias");
+            series[2] = new Serie("Stranger Things", "Netflix");
+            series[3] = new Serie("Okupas", "Martin");
+            series[4] = new Serie("Los Simpson", "Tobias");
+
+            videojuegos[0] = new Videojuego("The Last of Us", 15);
+            videojuegos[1] = new Videojuego("God of War", 20);
+            videojuegos[2] = new Videojuego("Warzone", 12);
+            videojuegos[3] = new Videojuego("Cyberpunk 2077", 25);
+            videojuegos[4] = new Videojuego("GTA 5", 65);
+
+            series[0].entregar();
+            series[2].entregar();
+            videojuegos[1].entregar();
+            videojuegos[3].entregar();
+
+            int entregaSeries = 0;
+            int entregaVideojuegos = 0;
+
+            foreach (var serie in series)
+            {
+                if (serie.isEntregado())
+                {
+                    entregaSeries++;
+                }
+            }
+
+            foreach (var vJuego in videojuegos)
+            {
+                if (vJuego.isEntregado())
+                {
+                    entregaVideojuegos++;
+                }
+            }
+
+            Console.WriteLine("cantidad de entrega de series: " + entregaSeries);
+            Console.WriteLine("cantidad de entrega de videojuegos: " + entregaVideojuegos);
+
+            Videojuego horasMaxim = videojuegos[0];
+            foreach (var videojuego in videojuegos)
+            {
+                if (videojuego.getHoras() > horasMaxim.getHoras())
+                {
+                    horasMaxim = videojuego;
+                }
+            }
+
+            Serie temporadasMaxim = series[0];
+            foreach (var serie in series)
+            {
+                if (serie.getTemporadas() > temporadasMaxim.getTemporadas())
+                {
+                    temporadasMaxim = serie;
+                }
+            }
+
+            Console.WriteLine("videojuego con mas horas:");
+            Console.WriteLine(horasMaxim);
+            Console.WriteLine("Serie con más temporadas: ");
+            Console.WriteLine(temporadasMaxim);
+
+            Console.ReadKey();
+
+        }
+    }
+}
+
+

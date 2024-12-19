@@ -1,0 +1,135 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml;
+
+namespace ejer_8
+{
+
+    class Persona
+    {
+        public int Edad { get; set; }
+        public string Nombre { get; set; }
+        public char Sexo { get; set; }
+
+
+        public Persona(string nombre, char sexo, int edad)
+        {
+            this.Edad = edad;
+            this.Nombre = nombre;
+            this.Sexo = sexo;
+        }
+
+        class Estudiante : Persona
+        {
+            public double calificacion { get; set; }
+            private Random random = new Random();
+
+            public Estudiante(string nombre, char sexo, int edad) : base(nombre, sexo, edad)
+            {
+                calificacion = random.Next(0, 11);
+            }
+
+            public bool EstaAusente()
+            {
+                return random.Next(2) == 0;
+            }
+
+        }
+
+        class Profesor : Persona
+        {
+            public string Materia { get; set; }
+            private Random random = new Random();
+
+            public Profesor(string nombre, char sexo, int edad, string materia) : base(nombre, sexo, edad)
+            {
+                Materia = materia;
+            }
+
+            public bool EstaDisponible()
+            {
+                return random.Next(5) != 0;
+            }
+
+        }
+
+        class Aula
+        {
+            public int id { get; set; }
+            public int maxEstudiantes { get; set; }
+            public string materia { set; get; }
+            public List<Estudiante> Estudiantes { get; set; }
+
+            public Profesor Profesor {  get; set; }    
+
+            public Aula(int id, int maxEstudiantes, string materia)
+            {
+                this.id = id;
+                this.maxEstudiantes = maxEstudiantes;
+                this.materia = materia;
+                Estudiantes = new List<Estudiante>();
+            }
+
+            public bool HayClase()
+            {
+                if (!Profesor.EstaDisponible())return false;
+                int presentes = 0;
+                foreach (var estudiante in Estudiantes)
+                {
+                    if (!estudiante.EstaAusente())
+                    {
+                        presentes++;
+                    }
+                }
+               return presentes > (maxEstudiantes/2) && Profesor.Materia == materia;
+            }
+
+            public void MostrarResultados()
+            {
+                int Maprobados = 0, Faprobados = 0;
+                foreach (var aprobados in Estudiantes)
+                {
+                    if (aprobados.calificacion >= 0.5)
+                    {
+                        if (aprobados.Sexo == 'M') Maprobados++;
+                        else Maprobados++;
+                    }
+                }
+                Console.WriteLine($"alumnos masculinos aprobados: {Maprobados}. Y alumnas femeninas aprobadas: {Faprobados}");
+            }
+
+            internal class Program
+            {
+                static void Main(string[] args)
+                {
+                    Random rnd = new Random();
+
+                    Aula aula = new Aula(1, 50, "matematicas")
+                    {
+                        Profesor = new Profesor("Juan Ojeda", 'M', 45, "matematicas")
+                    };
+
+                    for (int i = 0; i < aula.maxEstudiantes; i++)
+                    {
+                        char sexo = rnd.Next(2) == 0 ? 'F' : 'M';
+                        aula.Estudiantes.Add(new Estudiante($"estudiante: {i + 1} ", sexo, rnd.Next(18,28)));
+                    }
+
+                    if (aula.HayClase())
+                    {
+                        Console.WriteLine($"se puede dar clase en el aula: {aula.id}");
+                        aula.MostrarResultados();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"no se puede dar clase en el aula {aula.id}");
+                    }
+                    Console.ReadKey();
+                }
+            }
+        }
+    }
+}

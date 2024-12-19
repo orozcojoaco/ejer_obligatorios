@@ -1,0 +1,109 @@
+using Microsoft.SqlServer.Server;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+namespace ejer_obligatorios
+{
+    public class Producto
+    {
+        public string nombre { get; set; }
+        public double precio { get; set; }
+
+        public Producto(string nombre, double precio)
+        {
+            this.nombre = nombre;
+            this.precio = precio;
+        }
+
+        public virtual double Calcular(int cantidad)
+        {
+            return precio * cantidad;
+        }
+    }
+
+    public class Perecedero : Producto
+    {
+        public int diasCaducar;
+
+        public Perecedero(string nombre, double precio, int diasCaducar) : base(nombre, precio)
+        {
+            this.diasCaducar = diasCaducar;
+        }
+
+        public override double Calcular(int cantidad)
+        {
+            double precioFinal = precio * cantidad;
+
+            if (diasCaducar == 1)
+            {
+                precioFinal -= precioFinal * 0.75;
+            }
+            else if (diasCaducar == 2)
+            {
+                precioFinal -= precioFinal * 0.60;
+            }
+            else if (diasCaducar == 3)
+            {
+                precioFinal -= precioFinal * 0.50;
+            }
+
+            return precioFinal;
+        }
+    }
+
+    public class NoPerecedero : Producto
+    {
+        public string tipo { get; set; }
+
+        public NoPerecedero(string nombre, double precio, string tipo) : base(nombre, precio)
+        {
+            this.tipo = tipo;
+        }
+
+        public override double Calcular(int cantidad)
+        {
+            return base.Calcular(cantidad);
+        }
+    }
+
+
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+
+            Producto[] produtos = new Producto[]
+            {
+                new Perecedero("Leche", 900, 1),
+                new Perecedero("Yogurt", 1500, 3),
+                new NoPerecedero("choclo", 1200, "lata"),
+                new NoPerecedero("Aceite", 3000, "Envase")
+            };
+
+            foreach(var prod in produtos)
+            {
+                if(prod is Perecedero perecedero)
+                {
+                    Console.WriteLine(perecedero.nombre + ". 5 unidades: " + perecedero.Calcular(5) + " pesos");
+                    Console.WriteLine("dias a vencer " + perecedero.diasCaducar);
+                }else if(prod is NoPerecedero noPerecedero)
+                {
+                    Console.WriteLine(noPerecedero.nombre + ". 3 unidades: " + noPerecedero.Calcular(3) + " pesos");
+                    Console.WriteLine("tipo: " + noPerecedero.tipo);
+                }
+            }
+            Console.ReadKey();
+        }
+
+
+     }
+        
+}
+
+

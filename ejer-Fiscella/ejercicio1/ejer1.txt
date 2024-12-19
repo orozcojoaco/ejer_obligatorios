@@ -1,0 +1,121 @@
+using Microsoft.SqlServer.Server;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ejer_obligatorios
+{
+
+    public class Cuenta
+    {
+        private string titular;
+
+        public string Titular
+        {
+            set
+            {
+                titular = value;
+            }
+            get
+            {
+                return titular; 
+            }
+        }
+        private double cantidad;
+
+        public double Cantidad
+        {
+            set
+            {
+                cantidad = value;
+            }
+            get
+            {
+                return cantidad;
+            }
+        }
+
+        private double nuevaCantidad;
+        public double NuevaCantidad
+        {
+            set
+            {
+                nuevaCantidad = value;
+            }
+            get
+            {
+                return nuevaCantidad;
+            }
+        }
+
+        private double quiereRetirar;
+        public double QuiereRetirar
+        {
+            set
+            {
+                quiereRetirar = value;
+            }
+            get
+            {
+                return quiereRetirar;
+            }
+        }
+
+
+        public Cuenta(string titular, double cantidad)
+        {
+            Titular = titular;
+            
+            Cantidad = cantidad;
+            
+        }
+
+        public void Ingresar()
+        {
+            Console.WriteLine("coloque la cantidad a ingresar: ");
+            cantidad = Double.Parse(Console.ReadLine());
+            nuevaCantidad = nuevaCantidad + cantidad;
+            if (cantidad < 0)
+            {
+                Console.WriteLine("error");
+            }
+            else
+            {
+                Console.WriteLine("el saldo de " + titular + " ahora es de " + nuevaCantidad);
+            }
+
+        }
+
+        public void Retirar()
+        {
+            Console.WriteLine("ingrese monto a retirar: ");
+            quiereRetirar = Double.Parse(Console.ReadLine());
+            double totalRetiro = nuevaCantidad - quiereRetirar;
+
+            if(totalRetiro < 0)
+            {
+                cantidad = 0;
+                Console.WriteLine("la cantidad ahora es: " + cantidad);
+            }
+            else
+            {
+                Console.WriteLine("ahora el saldo es de: " + totalRetiro);
+            }
+
+        }
+    }
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+
+            Cuenta cuenta1 = new Cuenta("joaquin",20000);
+            cuenta1.Ingresar();
+            cuenta1.Retirar();
+            Console.ReadKey();
+
+        }
+    }
+}
