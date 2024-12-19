@@ -7532,19 +7532,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Usuario\\.nuget\\packages\\": {}
+    "C:\\Users\\A-28\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\xampp\\htdocs\\P.O.O\\Juego_Galaga\\Juego_Galaga\\Juego_Galaga\\Juego_Galaga.csproj",
+      "projectUniqueName": "C:\\xampp\\htdocs\\ejer_obligatorios\\Juego_Galaga\\Juego_Galaga\\Juego_Galaga\\Juego_Galaga.csproj",
       "projectName": "Juego_Galaga",
-      "projectPath": "C:\\xampp\\htdocs\\P.O.O\\Juego_Galaga\\Juego_Galaga\\Juego_Galaga\\Juego_Galaga.csproj",
-      "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-      "outputPath": "C:\\xampp\\htdocs\\P.O.O\\Juego_Galaga\\Juego_Galaga\\Juego_Galaga\\obj\\",
+      "projectPath": "C:\\xampp\\htdocs\\ejer_obligatorios\\Juego_Galaga\\Juego_Galaga\\Juego_Galaga\\Juego_Galaga.csproj",
+      "packagesPath": "C:\\Users\\A-28\\.nuget\\packages\\",
+      "outputPath": "C:\\xampp\\htdocs\\ejer_obligatorios\\Juego_Galaga\\Juego_Galaga\\Juego_Galaga\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\A-28\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7595,24 +7595,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[6.0.29, 6.0.29]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[6.0.29, 6.0.29]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[6.0.29, 6.0.29]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[6.0.29, 6.0.29]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
@@ -7621,7 +7603,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303\\RuntimeIdentifierGraph.json"
       }
     }
   }

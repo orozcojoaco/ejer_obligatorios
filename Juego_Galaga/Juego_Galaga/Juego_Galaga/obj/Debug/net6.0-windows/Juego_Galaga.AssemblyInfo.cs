@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Juego_Galaga")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5fb6161fa328ddcb8965dfcdcb9755ebb2125304")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6d466770dd410e767fd8ad891ab7c0da7df581db")]
 [assembly: System.Reflection.AssemblyProductAttribute("Juego_Galaga")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Juego_Galaga")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

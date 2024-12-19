@@ -25,16 +25,17 @@ namespace ejer_8
         class Estudiante : Persona
         {
             public double calificacion { get; set; }
-            private Random random = new Random();
 
-            public Estudiante(string nombre, char sexo, int edad) : base(nombre, sexo, edad)
+
+            public Estudiante(string nombre, char sexo, int edad, double calificacion) : base(nombre, sexo, edad)
             {
-                calificacion = random.Next(0, 11);
+                this.calificacion = calificacion;
             }
 
-            public bool EstaAusente()
+
+            public void mostrarDetalles()
             {
-                return random.Next(2) == 0;
+                Console.WriteLine(Nombre + ": nombre " + Edad + ": edad " + Sexo + ": sexo " + calificacion + ": calificacion");
             }
 
         }
@@ -42,91 +43,117 @@ namespace ejer_8
         class Profesor : Persona
         {
             public string Materia { get; set; }
-            private Random random = new Random();
+
 
             public Profesor(string nombre, char sexo, int edad, string materia) : base(nombre, sexo, edad)
             {
                 Materia = materia;
             }
 
-            public bool EstaDisponible()
-            {
-                return random.Next(5) != 0;
-            }
+
 
         }
 
         class Aula
         {
-            public int id { get; set; }
-            public int maxEstudiantes { get; set; }
+
             public string materia { set; get; }
-            public List<Estudiante> Estudiantes { get; set; }
+            public List<Estudiante> Estudiantes { get; set; } = new List<Estudiante>();
 
-            public Profesor Profesor {  get; set; }    
+            public Profesor Profesor { get; set; }
 
-            public Aula(int id, int maxEstudiantes, string materia)
+            public Aula(string materia, Profesor profe)
             {
-                this.id = id;
-                this.maxEstudiantes = maxEstudiantes;
+
                 this.materia = materia;
-                Estudiantes = new List<Estudiante>();
+                Profesor = profe;
             }
 
-            public bool HayClase()
+
+            public void agregarEstudiante(Estudiante estudiante)
             {
-                if (!Profesor.EstaDisponible())return false;
-                int presentes = 0;
-                foreach (var estudiante in Estudiantes)
-                {
-                    if (!estudiante.EstaAusente())
-                    {
-                        presentes++;
-                    }
-                }
-               return presentes > (maxEstudiantes/2) && Profesor.Materia == materia;
+                Estudiantes.Add(estudiante);
             }
 
-            public void MostrarResultados()
+
+            public Estudiante busquedaDeEstudiante(string nombre)
             {
-                int Maprobados = 0, Faprobados = 0;
-                foreach (var aprobados in Estudiantes)
+                foreach (Estudiante estud in Estudiantes)
                 {
-                    if (aprobados.calificacion >= 0.5)
+                    if (estud.Nombre == nombre)
                     {
-                        if (aprobados.Sexo == 'M') Maprobados++;
-                        else Maprobados++;
+                        return estud;
                     }
                 }
-                Console.WriteLine($"alumnos masculinos aprobados: {Maprobados}. Y alumnas femeninas aprobadas: {Faprobados}");
+                return null;
+            }
+
+            public void eliminaEstudiante(Estudiante estudiante)
+            {
+                if (estudiante != null)
+                {
+                    Estudiantes.Remove(estudiante);
+                    Console.WriteLine("se elimino a: " + estudiante.Nombre);
+                }
+                else
+                {
+                    Console.WriteLine("no se encontro al estudiante");
+                }
+            }
+
+            public void mostrarAprobados()
+            {
+                int aprobados = 0;
+                foreach (Estudiante estud in Estudiantes)
+                {
+                    if (estud.calificacion >= 5)
+                    {
+                        aprobados++;
+                        estud.mostrarDetalles();
+                    }
+
+                }
+                Console.WriteLine(aprobados + " - total de aprobados");
             }
 
             internal class Program
             {
                 static void Main(string[] args)
                 {
-                    Random rnd = new Random();
+                    Profesor profe1 = new Profesor("lucas",'M', 50,"matematicas");
+                    Aula aula1 = new Aula("matematicas", profe1);
 
-                    Aula aula = new Aula(1, 50, "matematicas")
-                    {
-                        Profesor = new Profesor("Juan Ojeda", 'M', 45, "matematicas")
-                    };
+                    aula1.agregarEstudiante(new Estudiante("agustin",'M',17,7.0));
+                    aula1.agregarEstudiante(new Estudiante("joaquin", 'M', 14, 6.0));
+                    aula1.agregarEstudiante(new Estudiante("lautaro", 'F', 15, 4.0));
+                    aula1.agregarEstudiante(new Estudiante("matias", 'M', 13, 2.0));
+                    aula1.agregarEstudiante(new Estudiante("jatniel", 'F', 18, 9.0));
 
-                    for (int i = 0; i < aula.maxEstudiantes; i++)
+                    Console.WriteLine("ingresa nombre: " );
+                    string nombreBuscado = Console.ReadLine();
+                    Estudiante estudianteEncontrado = aula1.busquedaDeEstudiante(nombreBuscado);
+                    if (estudianteEncontrado != null)
                     {
-                        char sexo = rnd.Next(2) == 0 ? 'F' : 'M';
-                        aula.Estudiantes.Add(new Estudiante($"estudiante: {i + 1} ", sexo, rnd.Next(18,28)));
-                    }
-
-                    if (aula.HayClase())
-                    {
-                        Console.WriteLine($"se puede dar clase en el aula: {aula.id}");
-                        aula.MostrarResultados();
+                        estudianteEncontrado.mostrarDetalles();
                     }
                     else
                     {
-                        Console.WriteLine($"no se puede dar clase en el aula {aula.id}");
+                        Console.WriteLine("no se encontro a nadie");
                     }
+
+                    Console.WriteLine("ingresa nombre para eliminar");
+                    string nombreEliminado = Console.ReadLine();
+                    Estudiante estudianteEliminado = aula1.busquedaDeEstudiante(nombreEliminado);
+                    if (estudianteEliminado != null)
+                    {
+                        aula1.eliminaEstudiante(estudianteEliminado);
+                    }
+                    else
+                    {
+                        Console.WriteLine("no se encontro al estudiante");
+                    }
+                    Console.WriteLine("los estudiantes que aprobaron son: ");
+                    aula1.mostrarAprobados();
                     Console.ReadKey();
                 }
             }

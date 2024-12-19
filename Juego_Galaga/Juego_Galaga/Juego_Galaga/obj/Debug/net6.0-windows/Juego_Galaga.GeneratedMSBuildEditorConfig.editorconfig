@@ -14,6 +14,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Juego_Galaga
-build_property.ProjectDir = C:\xampp\htdocs\P.O.O\Juego_Galaga\Juego_Galaga\Juego_Galaga\
+build_property.ProjectDir = C:\xampp\htdocs\ejer_obligatorios\Juego_Galaga\Juego_Galaga\Juego_Galaga\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
