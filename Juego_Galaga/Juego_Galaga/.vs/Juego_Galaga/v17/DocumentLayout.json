@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\xampp\\htdocs\\P.O.O\\Juego_Galaga\\Juego_Galaga\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{004007DC-100C-4DC1-81FB-56D5026ACD71}|Juego_Galaga\\Juego_Galaga.csproj|C:\\xampp\\htdocs\\P.O.O\\Juego_Galaga\\Juego_Galaga\\juego_galaga\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{004007DC-100C-4DC1-81FB-56D5026ACD71}|Juego_Galaga\\Juego_Galaga.csproj|solutionrelative:juego_galaga\\bullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{004007DC-100C-4DC1-81FB-56D5026ACD71}|Juego_Galaga\\Juego_Galaga.csproj|C:\\xampp\\htdocs\\P.O.O\\Juego_Galaga\\Juego_Galaga\\juego_galaga\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{004007DC-100C-4DC1-81FB-56D5026ACD71}|Juego_Galaga\\Juego_Galaga.csproj|solutionrelative:juego_galaga\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{004007DC-100C-4DC1-81FB-56D5026ACD71}|Juego_Galaga\\Juego_Galaga.csproj|c:\\xampp\\htdocs\\p.o.o\\juego_galaga\\juego_galaga\\juego_galaga\\enemymanger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{004007DC-100C-4DC1-81FB-56D5026ACD71}|Juego_Galaga\\Juego_Galaga.csproj|solutionrelative:juego_galaga\\enemymanger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{004007DC-100C-4DC1-81FB-56D5026ACD71}|Juego_Galaga\\Juego_Galaga.csproj|C:\\xampp\\htdocs\\P.O.O\\Juego_Galaga\\Juego_Galaga\\juego_galaga\\player1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{004007DC-100C-4DC1-81FB-56D5026ACD71}|Juego_Galaga\\Juego_Galaga.csproj|solutionrelative:juego_galaga\\player1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{004007DC-100C-4DC1-81FB-56D5026ACD71}|Juego_Galaga\\Juego_Galaga.csproj|C:\\xampp\\htdocs\\P.O.O\\Juego_Galaga\\Juego_Galaga\\juego_galaga\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{004007DC-100C-4DC1-81FB-56D5026ACD71}|Juego_Galaga\\Juego_Galaga.csproj|solutionrelative:juego_galaga\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Game1.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\P.O.O\\Juego_Galaga\\Juego_Galaga\\Juego_Galaga\\Game1.cs",
+              "RelativeDocumentMoniker": "Juego_Galaga\\Game1.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\P.O.O\\Juego_Galaga\\Juego_Galaga\\Juego_Galaga\\Game1.cs",
+              "RelativeToolTip": "Juego_Galaga\\Game1.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAkwMUAAAA2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T20:12:36.207Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Player1.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\P.O.O\\Juego_Galaga\\Juego_Galaga\\Juego_Galaga\\Player1.cs",
+              "RelativeDocumentMoniker": "Juego_Galaga\\Player1.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\P.O.O\\Juego_Galaga\\Juego_Galaga\\Juego_Galaga\\Player1.cs",
+              "RelativeToolTip": "Juego_Galaga\\Player1.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAA/AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T20:10:57.684Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EnemyManger.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\P.O.O\\Juego_Galaga\\Juego_Galaga\\Juego_Galaga\\EnemyManger.cs",
+              "RelativeDocumentMoniker": "Juego_Galaga\\EnemyManger.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\P.O.O\\Juego_Galaga\\Juego_Galaga\\Juego_Galaga\\EnemyManger.cs",
+              "RelativeToolTip": "Juego_Galaga\\EnemyManger.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEYAAABDAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T20:10:45.873Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Enemy.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\P.O.O\\Juego_Galaga\\Juego_Galaga\\Juego_Galaga\\Enemy.cs",
+              "RelativeDocumentMoniker": "Juego_Galaga\\Enemy.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\P.O.O\\Juego_Galaga\\Juego_Galaga\\Juego_Galaga\\Enemy.cs",
+              "RelativeToolTip": "Juego_Galaga\\Enemy.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T20:10:28.253Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Bullet.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\P.O.O\\Juego_Galaga\\Juego_Galaga\\Juego_Galaga\\Bullet.cs",
+              "RelativeDocumentMoniker": "Juego_Galaga\\Bullet.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\P.O.O\\Juego_Galaga\\Juego_Galaga\\Juego_Galaga\\Bullet.cs",
+              "RelativeToolTip": "Juego_Galaga\\Bullet.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAACEAAAA9AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-12T20:10:15.915Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/A-11/source/repos/Juego_Galaga/Juego_Galaga/Content/bullet.png</File>
+    <File>C:/Users/A-11/source/repos/Juego_Galaga/Juego_Galaga/Content/enemy.png</File>
+    <File>C:/Users/A-11/source/repos/Juego_Galaga/Juego_Galaga/Content/fondo.jpg</File>
+    <File>C:/Users/A-11/source/repos/Juego_Galaga/Juego_Galaga/Content/heart.png</File>
+    <File>C:/Users/A-11/source/repos/Juego_Galaga/Juego_Galaga/Content/player.png</File>
+    <File>C:/Users/A-11/source/repos/Juego_Galaga/Juego_Galaga/Content/player2.png</File>
+    <File>C:/Users/A-11/source/repos/Juego_Galaga/Juego_Galaga/Content/ScoreFont.spritefont</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
